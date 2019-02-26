@@ -1,0 +1,41 @@
+<html>
+<head>
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+    <style>
+        @-webkit-keyframes throbber {
+            0% {
+                color: #333;
+            }
+            33% {
+                color: #ccc;
+            }
+            100% {
+                color: #ccc;
+            }
+        }
+
+        .throb-group .icon-throb {
+            display: inline-block;
+            -webkit-animation: throbber 1s .165s infinite steps(3);
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .throb-group .icon-throb:nth-child(2) {
+            -webkit-animation-delay: .33s;
+        }
+
+        .throb-group .icon-throb:nth-child(3) {
+            -webkit-animation-delay: .495s;
+        }
+    </style>
+</head>
+<body>
+    <div class="throb-group">
+        <i class="icon-sign-blank icon-throb"></i>
+        <i class="icon-sign-blank icon-throb"></i>
+        <i class="icon-sign-blank icon-throb"></i>
+    </div>
+</body>
+</html>

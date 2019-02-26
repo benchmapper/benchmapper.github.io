@@ -1,0 +1,160 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body,
+#map {
+  height: 100%;
+  width: 100%;
+}
+
+
+// hide the "edit on OSM" button on mobile,
+// and the "edit in app" button on desktop.
+.leaflet-top.leaflet-left {
+  .leaflet-edit-osm {
+    display: none;
+
+    @media only screen and (min-width: 900px) {
+      display: block !important;
+    }
+
+    a {
+      border-top-left-radius: 2px !important;
+      border-top-right-radius: 2px !important;
+      border-bottom-left-radius: 2px !important;
+      border-bottom-right-radius: 2px !important;
+      width: 30px !important;
+      height: 30px !important;
+      line-height: 30px !important;
+    }
+  }
+  .leaflet-control:last-of-type {
+    @media only screen and (min-width: 1025px) {
+      display: none;
+    }
+  }
+}
+
+
+// iFrame for opening iOS and Android apps; if we don't open it in an iframe,
+// it can redirect to a new URL, request the user open the app, and if they
+// don't, silently fail on a "coule not load this page" screen.
+#geo-app-opener {
+  position: absolute;
+  z-index: -10;
+}
+
+
+.icon.temaki {
+  // display: inline-block;
+  // width: 15px;
+  // height: 15px;
+  // margin: 0 10px;
+  display: inline-block;
+  width: 20px;
+  height: 19px;
+  margin: 8px 8px;
+  fill: white;
+}
+
+
+.leaflet-control-layers-overlays {
+  img {
+    margin: 0 3px 0 5px;
+    float: left;
+  }
+
+  .icon.temaki {
+    fill: black;
+    margin: 0 5px;
+    float: left;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-top: 1px;
+  }
+
+  .leaflet-control-layers-selector {
+    float: left;
+  }
+}
+
+.leaflet-control-layers-base {
+  input {
+    margin-right: 2px;
+  }
+}
+
+
+
+// Marker clusters
+.marker-cluster-small {
+	background-color: rgba(181, 226, 140, 0.6);
+}
+.marker-cluster-small div {
+  background-color: rgba(110, 204, 57, 0.6);
+}
+
+.marker-cluster-medium {
+  background-color: rgba(241, 211, 87, 0.6);
+}
+.marker-cluster-medium div {
+  background-color: rgba(240, 194, 12, 0.6);
+}
+
+.marker-cluster-large {
+  background-color: rgba(253, 156, 115, 0.6);
+}
+.marker-cluster-large div {
+  background-color: rgba(241, 128, 23, 0.6);
+}
+
+
+// Popups
+.leaflet-popup-content {
+  margin: 13px 20px 13px 13px;
+
+  table {
+    vertical-align: top;
+    th {
+      padding-right: 0.5em;
+      text-transform: capitalize;
+      vertical-align: top;
+    }
+  }
+
+  header {
+    margin-bottom: 0.5em;
+    font-size: 14px;
+    white-space: nowrap;
+
+    table {
+
+    }
+
+    th {
+
+    }
+
+    td {
+      text-align: right;
+    }
+  }
+}
+
+.edit-link {
+  font-size: 12px;
+}
+
+
+
+@media only screen and (max-width: 1150px) {
+  .leaflet-center {
+    margin-left: 13%;
+    width: 35%;
+  }
+}
