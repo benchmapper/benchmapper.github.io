@@ -1,4 +1,6 @@
-Карта конкурсу "Лелеки 2014"
-===================
+Benchmapper
 
-http://wiki.openstreetmap.org/wiki/Uk:Лелеки_2014
+
+---
+permalink: /index.html
+---
