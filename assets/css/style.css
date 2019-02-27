@@ -27,7 +27,9 @@ body,
 
 #geo-app-opener {
   position: absolute;
-  z-index: -10; }
+  z-index: -10;
+  top: 0;
+  left: 0; }
 
 .icon.temaki {
   display: inline-block;
@@ -87,6 +89,9 @@ body,
 
 .edit-link {
   font-size: 12px; }
+  @media only screen and (max-width: 1025px) {
+    .edit-link {
+      display: none; } }
 
 @media only screen and (max-width: 1150px) {
   .leaflet-center {

@@ -16,10 +16,10 @@ module.exports = window.L.Control.extend({
             link = L.DomUtil.create('a', '', bar);
 
         link.href = '#';
-        link.innerHTML = 'osm';
+        link.innerHTML = '<i class="fa fa-pencil"></i>';
         link.title = 'Edit in OpenStreetMap';
-        link.style.cssText = 'width:26px;height:26px;display:block;background:#fff;' +
-            'border-radius:4px;line-height:26px;text-decoration:none;text-align:center;color:#151;';
+        // link.style.cssText = 'width:26px;height:26px;display:block;background:#fff;' +
+            // 'border-radius:4px;line-height:26px;text-decoration:none;text-align:center;color:#151;';
 
         L.DomEvent
             .on(link, 'click', L.DomEvent.stopPropagation)
