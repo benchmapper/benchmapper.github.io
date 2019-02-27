@@ -613,6 +613,9 @@
 
         getLocation();
 
+        var you_are_here;
+        var marker_found = false;
+
         function getLocation() {
           benchmap.map.locate({
               setView: true,
@@ -620,9 +623,15 @@
               enableHighAccuracy: true
             })
             .on('locationfound', function(e) {
-              var marker = new L.marker(e.latlng);
-              marker.bindPopup("You are here.");
-              marker.addTo(benchmap.map);
+              if (marker_found == true) {
+                marker.setLatLng(e.latlng).update();
+              }
+              else {
+                marker_found = true;
+                you_are_here = new L.marker(e.latlng);
+                marker.bindPopup("You are here.");
+                marker.addTo(benchmap.map);
+              }
             });
         }
 
