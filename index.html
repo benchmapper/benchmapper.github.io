@@ -424,7 +424,7 @@
         function getNewBenches() {
 
             var bbString = formatBBox(),
-                dateQuery = '(newer:"2018-02-24T07:00:00Z")',
+                dateQuery = '(newer:"2019-02-24T07:00:00Z")',
                 overpassQuery = encodeURIComponent("node" + '[amenity=bench]' + dateQuery + bbString + ";out body;"),
                 overpassURL = "//overpass-api.de/api/interpreter?data=[out:json];" + overpassQuery;
 
@@ -624,13 +624,15 @@
             })
             .on('locationfound', function(e) {
               if (marker_found == true) {
-                marker.setLatLng(e.latlng).update();
+                you_are_here.setLatLng(e.latlng).update();
+                console.log("updating 'you are here' position.");
               }
               else {
+                console.log("adding marker for 'you are here'.")
                 marker_found = true;
                 you_are_here = new L.marker(e.latlng);
-                marker.bindPopup("You are here.");
-                marker.addTo(benchmap.map);
+                you_are_here.bindPopup("You are here.");
+                you_are_here.addTo(benchmap.map);
               }
             });
         }
