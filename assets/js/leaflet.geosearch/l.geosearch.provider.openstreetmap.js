@@ -19,7 +19,7 @@ L.GeoSearch.Provider.OpenStreetMap = L.Class.extend({
             format: 'json'
         }, this.options);
 
-        return 'http://nominatim.openstreetmap.org/search'
+        return 'https://nominatim.openstreetmap.org/search'
             + L.Util.getParamString(parameters);
     },
 
@@ -28,13 +28,13 @@ L.GeoSearch.Provider.OpenStreetMap = L.Class.extend({
             return [];
 
         var results = [];
-        for (var i = 0; i < data.length; i++) 
+        for (var i = 0; i < data.length; i++)
             results.push(new L.GeoSearch.Result(
-                data[i].lon, 
-                data[i].lat, 
+                data[i].lon,
+                data[i].lat,
                 data[i].display_name
             ));
-        
+
         return results;
     }
 });
