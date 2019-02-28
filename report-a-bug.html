@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135296666-1"></script>
+    <script>
+      if (window.location.hostname != "benchmapper.dev") {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-135296666-1');
+      }
+      else {
+        console.log("debug mode");
+      }
+    </script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Benchmapper - Report a bug</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="assets/js/bootstrap-3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/js/font-awesome-4.1.0/css/font-awesome.css" />
+    <link rel="stylesheet" href="assets/css/bootstrap_overrides.css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- Static navbar -->
+        <nav class="navbar navbar-default navbar-static-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.html">Benchmapper</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="index.html">Home</a></li>
+                <!-- <li><a href="#getting-started">Getting started</a></li>
+                <li><a href="#iphone">iPhone</a></li>
+                <li><a href="#android">Android</a></li>
+                <li><a href="#images">Adding images</a></li> -->
+                <!-- <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li> -->
+              </ul>
+              <!-- <ul class="nav navbar-nav navbar-right">
+                <li><a href="../navbar/">Default</a></li>
+                <li class="active"><a href="./">Static top <span class="sr-only">(current)</span></a></li>
+                <li><a href="../navbar-fixed-top/">Fixed top</a></li>
+              </ul> -->
+            </div><!--/.nav-collapse -->
+          </div>
+        </nav>
+
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <h1>Report a bug</h1>
+              <p>This form lets you report bugs in Benchmapper. <strong>If you have questions about your assignment, email your instructor directly.</strong></p>
+              <form action="https://docs.google.com/forms/d/1FBtvNj_spVex3Yyv1-qTSnUN1N9_Bzf9d6GnnNodPUU/formResponse" method="post" id="bug-report-form">
+                <div class="form-group">
+                  <label for="contact-name">Your name: <span class="required">(Required)</span></label>
+                  <input type="text" class="form-control" id="contact-name" name="entry.1362652741" aria-describedby="contact-name-error" required placeholder="">
+                  <p id="contact-name- error" class="help-block"></p>
+                </div>
+                <div class="form-group">
+                  <label for="contact-email">Your email address: <span class="required">(Required)</span></label>
+                  <input type="email" class="form-control" id="contact-email" name="emailAddress" aria-describedby="contact-email-error" required placeholder="">
+                  <p id="contact-email-error" class="help-block"></p>
+                </div>
+                <div class="form-group">
+                  <label for="contact-bug">Describe the problem: <span class="required">(Required)</span></label>
+                  <div class="form-description">Example: "The zoom button is missing on my phone."</div>
+                  <textarea class="form-control" id="contact-bug" name="entry.1479706352" aria-describedby="contact-bug-error" required placeholder=""></textarea>
+                  <p id="contact-bug-error" class="help-block"></p>
+                </div>
+                <div class="form-group">
+                  <label for="contact-expected">What did you expect to happen instead?</label>
+                  <div class="form-description">Example: "I wanted to zoom out."</div>
+                  <textarea class="form-control" id="contact-expected" name="entry.1612507678" aria-describedby="contact-expected-error" placeholder=""></textarea>
+                  <p id="contact-expected-error" class="help-block"></p>
+                </div>
+                <div class="form-group">
+                  <label for="contact-browser">Your browser info:</label>
+                  <textarea class="form-control" id="contact-browser" rows="7" name="entry.1876506331" aria-describedby="contact-browser-error"></textarea>
+                  <p id="contact-browser-error" class="help-block"></p>
+                </div>
+                <div class="disclaimer">
+                  <p>By clicking "Submit", you agree that this form can send us information about your device's operating system, browser version, as well as your phone or computer's screen resolution. We do not collect your location, IP address, or other personally-identifying details other than those you have entered yourself. Information submitted on this form is stored on Google's servers, and will not be shared with any third party. Our retention policy is to delete your information after your bug has been fixed.</p>
+                </div>
+                <button type="submit" class="btn btn-default" id="contact-form-submit">Submit</button>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/ua-parser-js/dist/ua-parser.min.js"></script>
+    <script src="assets/js/bench-mapper/form-submit.js"></script>
+  </body>
+</html>

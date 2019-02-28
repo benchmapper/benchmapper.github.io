@@ -4,14 +4,13 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135296666-1"></script>
     <script>
-      if (window.location.hostname != "benchmapper.dev") {
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-        gtag('config', 'UA-135296666-1');
-      }
+      gtag('config', 'UA-135296666-1');
     </script>
+    <link rel="stylesheet" href="assets/css/bootstrap_overrides.css" />
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,11 +44,10 @@
             <div id="navbar" class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="#getting-started">Getting started</a></li>
+                <!-- <li><a href="#getting-started">Getting started</a></li>
                 <li><a href="#iphone">iPhone</a></li>
                 <li><a href="#android">Android</a></li>
-                <li><a href="#images">Adding images</a></li>
-                <li><a href="report-a-bug.html">Report a bug</a></li>
+                <li><a href="#images">Adding images</a></li> -->
                 <!-- <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
                   <ul class="dropdown-menu">
@@ -74,73 +72,21 @@
 
 
         <div class="container">
-
-          <!-- Main component for a primary marketing message or call to action -->
-          <div class="jumbotron">
-            <h1 style="font-size: 48px;">Benchmapper Help</h1>
-            <p>Benchmapper allows users to quickly find benches on OpenStreetMap.<br>It also helps OpenStreetMap contributors identify benches that haven't yet been added to OpenStreetMap.</p>
-          </div>
-
           <div class="row">
             <div class="col-md-12">
-              <h2>Getting started with OpenStreetMap</h2>
-              <p>Create an account at <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap.org</a>.</p>
-              <p><strong>Tip: don't use spaces in your account name.</strong> Not all OpenStreetMap editors support spaces.</p>
+              <h1>Bug report recieved!</h1>
+              <p>Thank you for your bug report. If you submitted a question abour your assignment, please email your instructor directly. </p>
+              <p><a href="report-a-bug.html">File another bug report</a></p>
+              <p><a href="index.html">Return to the Bugmapper map</a></p>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Using a desktop or laptop</h2>
-              <p>On a desktop or laptop computer, use the web-based editor on <a href="https://www.openstreetmap.org" target="_blank">OpenStreetMap.org</a>.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <h2 id="iphone">iPhone</h2>
-              <p>The OpenStreetMap website does not display on mobile, so you'll need to download and install an app.</p>
-              <p>The best OpenStreetMap editor for iPhone is "<strong>Go Map!!</strong>", spelled with two exclamation marks. <a href="https://itunes.apple.com/us/app/go-map/id592990211">Download Go Map!! from the Apple iOS App Store.</a></p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <h2 id="android">Android</h2>
-              <p>The OpenStreetMap website does not display on mobile, so you'll need to download and install an app.</p>
-              <p>The most popular OpenStreetMap editor for Android is <strong>Vespucci</strong>. <a href="https://play.google.com/store/apps/details?id=de.blau.android">Download Vespucci from the Google Play store</a> or on the <a href="https://vespucci.io/">Vespucci website</a>.</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <h2 id="images">Adding images</h2>
-              <p>The most popular website for hosting photos for OpenStreetMap is <a href="http://flickr.com" target="_blank">Flickr</a>.</p>
-
-              Adding the image tag as a preset in Go Map!!
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-
-              <h2>Making changes</h2>
-              <p></p>
-
-              Once you've approved changes, you still have to save them to the OpenStreetMap server.
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <h2>Desktop/Laptop</h2>
-              <p>Click the "OSM" button on the left sidebar to open the OpenStreetMap editor, at your current location.</p>
-
-              <h2>Mobile</h2>
-              <p>Click the "pencil" icon open your phone's OpenStreetMap editor. (If you don't have one installed, the button won't do anything.)</p>
-            </div>
-          </div>
-
-
         </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/js/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script src="assets/js/ua-parser-js/dist/ua-parser.min.js"></script>
+    <script src="assets/js/bench-mapper/form-submit.js"></script>
   </body>
 </html>

@@ -312,8 +312,8 @@
 
             var tags = $('<div>').append(r).html();
 
-            var img = '<b>Photo: </b>' + '<a href="' + node.tags.image + '">' + node.tags.image + '</a><br>';
-            var flickr = '<b>Photo: </b>' + '<a href="' + node.tags.flickr + '">' + "Flickr link" + '</a><br>';
+            var img = '<b>Photo: </b>' + '<a href="' + node.tags.image + '" target="_blank">' + node.tags.image + '</a><br>';
+            var flickr = '<b>Photo: </b>' + '<a href="' + node.tags.flickr + '" target="_blank">' + "Flickr link" + '</a><br>';
             if (node.tags.image == null) img = '';
             if (node.tags.flickr == null) flickr = '';
 
