@@ -313,9 +313,15 @@
             var tags = $('<div>').append(r).html();
 
             var img = '<b>Photo: </b>' + '<a href="' + node.tags.image + '" target="_blank">' + node.tags.image + '</a><br>';
-            var flickr = '<b>Photo: </b>' + '<a href="' + node.tags.flickr + '" target="_blank">' + "Flickr link" + '</a><br>';
-            if (node.tags.image == null) img = '';
-            if (node.tags.flickr == null) flickr = '';
+            // var flickr = '<b>Photo: </b>' + '<a href="' + node.tags.flickr + '" target="_blank">' + "Flickr link" + '</a><br>';
+            if (node.tags.image == null) {
+                img = '';
+            }
+            else if (node.tags.image.endsWith('.jpg') || node.tags.image.endsWith('.jpeg') || node.tags.image.endsWith('.png') || node.tags.image.endsWith('.gif')) {
+                var img = '<b>Photo: </b>' + '<a href="' + node.tags.image + '" target="_blank"><img src="' + node.tags.image + '" /></a><br>';
+            }
+
+            // if (node.tags.flickr == null) flickr = '';
 
             // return link + '<br>' + user + timestamp + '<br>' + '<br>' + '<b>Tags:</b>' + '<br>' + tags + '<br>' + img;
             return tooltip_header + tags + '<br>' + img;

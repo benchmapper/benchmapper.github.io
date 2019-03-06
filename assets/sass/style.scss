@@ -157,6 +157,12 @@ body,
       text-align: right;
     }
   }
+
+  img {
+    height: auto;
+    width: 105%;
+    // max-width: 100%;
+  }
 }
 
 .edit-link {

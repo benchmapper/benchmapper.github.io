@@ -92,6 +92,9 @@ body,
     white-space: nowrap; }
     .leaflet-popup-content header td {
       text-align: right; }
+  .leaflet-popup-content img {
+    height: auto;
+    width: 105%; }
 
 .edit-link {
   font-size: 12px; }
