@@ -322,7 +322,9 @@
         };
 
         function makeMarkers(filter) {
-            var markerCG = benchmap.markerClusterGroup;
+            var markerCGall = benchmap.markerClusterGroupAll;
+            var markerCGold = benchmap.markerClusterGroupOld;
+            var markerCGnew = benchmap.markerClusterGroupNew;
             // markerCG.clearLayers();
             benchmap.osmJson.forEach(function (node) {
                 // console.log("found");
@@ -351,8 +353,10 @@
                         });
 
                         // console.log(marker);
+
                         marker.bindPopup(formatMarkerInfo(node));
-                        markerCG.addLayer(marker);
+                        markerCGall.addLayer(marker);
+                        markerCGnew.addLayer(marker);
                     }
                     else {
                         var redMarker = L.ExtraMarkers.icon({
@@ -367,7 +371,8 @@
                             icon: redMarker
                         });
                         marker.bindPopup(formatMarkerInfo(node));
-                        markerCG.addLayer(marker);
+                        markerCGall.addLayer(marker);
+                        markerCGold.addLayer(marker);
                     }
                 }
             });
@@ -415,7 +420,6 @@
 
 
         function queryOverpass() {
-
             getNewBenches();
             getOldBenches();
         };
@@ -437,7 +441,8 @@
                 crossDomain: true,
                 success: function (data) {
                     var size = Object.keys(data.elements).length;
-                    console.log('New benches: ' + size);
+                    // console.log('New benches: ' + size);
+                    $('.toggle-new-benches').append(' (' + size + ')');
                     benchmap.osmJson = data.elements;
                     makeMarkers('new');
                 }
@@ -465,7 +470,9 @@
                     // window.focus();
 
                     var size = Object.keys(data.elements).length;
-                    console.log('Old benches: ' + size);
+                    // console.log('Old benches: ' + size);
+                    $('.toggle-old-benches').append(' (' + size + ')');
+
                     benchmap.osmJson = data.elements;
                     makeMarkers('old');
                 }
@@ -488,7 +495,8 @@
             //map.on('viewreset', onMapViewReset);
             //map.on('moveend', onMapMoveEnd);
 
-            benchmap.map.addLayer(benchmap.markerClusterGroup);
+            benchmap.map.addLayer(benchmap.markerClusterGroupOld);
+            benchmap.map.addLayer(benchmap.markerClusterGroupNew);
 
             queryOverpass();
 
@@ -504,8 +512,10 @@
             };
 
             var overlayLayer = {
-                '<span><svg class="icon temaki temaki-bench "><use xlink:href="#temaki-bench"></use></svg>Benches</span>': benchmap.markerClusterGroup//,
-                  // "<img src='assets/img/flickr-marker.png' width='17' height='17'>&nbsp;Flickr photos": flickr
+                // '<span><svg class="icon temaki temaki-bench "><use xlink:href="#temaki-bench"></use></svg>All Benches</span>': benchmap.markerClusterGroupAll,
+                '<span class="toggle-old-benches" title="Benches added before February 24, 2019"><svg class="icon temaki temaki-bench "><use xlink:href="#temaki-bench"></use></svg>Old</span>': benchmap.markerClusterGroupOld,
+                '<span class="toggle-new-benches" title="Benches added after February 24, 2019"><svg class="icon temaki temaki-bench "><use xlink:href="#temaki-bench"></use></svg>New</span>': benchmap.markerClusterGroupNew
+                // "<img src='assets/img/flickr-marker.png' width='17' height='17'>&nbsp;Flickr photos": flickr
             };
 
             var layerControl = L.control.layers(baseLayer, overlayLayer, {
@@ -604,12 +614,27 @@
             maxZoom: 22
         });
         benchmap.currentTag = "amenity";
-        benchmap.markerClusterGroup = L.markerClusterGroup({
+        benchmap.markerClusterGroupAll = L.markerClusterGroup({
+            disableClusteringAtZoom: 17,
+            spiderfyOnMaxZoom: false
+        });
+        benchmap.markerClusterGroupOld = L.markerClusterGroup({
+            disableClusteringAtZoom: 17,
+            spiderfyOnMaxZoom: false
+        });
+        benchmap.markerClusterGroupNew = L.markerClusterGroup({
             disableClusteringAtZoom: 17,
             spiderfyOnMaxZoom: false
         });
         benchmap.osmJson = {};
         makeMap();
+
+
+        // if ($('.leaflet-control-layers-overlays.with-title').length > -1) {
+        // }
+        // else {
+            $('.leaflet-control-layers-overlays').addClass('has-title').prepend('<heading>Benches</heading>');
+        // }
 
         getLocation();
 

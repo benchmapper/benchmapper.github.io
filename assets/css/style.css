@@ -29,7 +29,8 @@ body,
   position: absolute;
   z-index: -10;
   top: 0;
-  left: 0; }
+  left: 0;
+  border: 0; }
 
 .icon.temaki {
   display: inline-block;
@@ -53,6 +54,11 @@ body,
 
 .leaflet-control-layers-base input {
   margin-right: 2px; }
+
+.has-title heading {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block; }
 
 .marker-cluster-small {
   background-color: rgba(181, 226, 140, 0.6); }

@@ -47,6 +47,7 @@ body,
   z-index: -10;
   top: 0;
   left: 0;
+  border: 0;
 }
 
 
@@ -69,6 +70,10 @@ body,
     float: left;
   }
 
+  label {
+    // font-weight: normal;
+  }
+
   .icon.temaki {
     fill: black;
     margin: 0 5px;
@@ -89,6 +94,12 @@ body,
   input {
     margin-right: 2px;
   }
+}
+
+.has-title heading {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
 }
 
 
