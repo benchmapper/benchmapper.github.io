@@ -312,8 +312,7 @@
 
             var tags = $('<div>').append(r).html();
 
-            var img = '<b>Photo: </b>' + '<a href="' + node.tags.image + '" target="_blank">' + node.tags.image + '</a><br>';
-            // var flickr = '<b>Photo: </b>' + '<a href="' + node.tags.flickr + '" target="_blank">' + "Flickr link" + '</a><br>';
+            var img = '<b>Photo: </b>' + '<a href="' + node.tags.image + '" target="_blank">Image link</a><br>';
             if (node.tags.image == null) {
                 img = '';
             }
@@ -321,10 +320,22 @@
                 var img = '<b>Photo: </b>' + '<a href="' + node.tags.image + '" target="_blank"><img src="' + node.tags.image + '" /></a><br>';
             }
 
-            // if (node.tags.flickr == null) flickr = '';
+            var flickr = '<b>Photo: </b>' + '<a href="' + node.tags.flickr + '" target="_blank">Flickr link</a><br>';
+            if (node.tags.flickr == null) {
+                flickr = '';
+            }
+            else if (node.tags.flickr.endsWith('.jpg') || node.tags.flickr.endsWith('.jpeg')) {
+                var img = '<b>Photo: </b>' + '<a href="' + node.tags.flickr + '" target="_blank"><img src="' + node.tags.flickr + '" /></a><br>';
+            }
 
-            // return link + '<br>' + user + timestamp + '<br>' + '<br>' + '<b>Tags:</b>' + '<br>' + tags + '<br>' + img;
-            return tooltip_header + tags + '<br>' + img;
+            var complete_tooltip = tooltip_header + tags;
+            if (img != "") {
+                complete_tooltip = complete_tooltip + '<br>' + img;
+            }
+            if (flickr != "") {
+                complete_tooltip = complete_tooltip + '<br>' + flickr;
+            }
+            return complete_tooltip;
         };
 
         function makeMarkers(filter) {
