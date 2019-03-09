@@ -441,16 +441,17 @@
             getOldBenches();
         };
 
+        var lower_mainland_bbox = '(49.102195944878375,-123.41457366943361,49.42437391023319,-122.74990081787111)';
 
         function getNewBenches() {
 
-            var bbString = formatBBox(),
+            var bbString = lower_mainland_bbox,//formatBBox(),
                 dateQuery = '(newer:"2019-02-24T07:00:00Z")',
                 overpassQuery = encodeURIComponent("node" + '[amenity=bench]' + dateQuery + bbString + ";out body;"),
                 overpassURL = "//overpass-api.de/api/interpreter?data=[out:json];" + overpassQuery;
 
-                console.log(bbString);
-                console.log(overpassURL);
+                // console.log(bbString);
+                // console.log(overpassURL);
 
             $.ajax({
                 url: overpassURL,
@@ -459,6 +460,7 @@
                 success: function (data) {
                     var size = Object.keys(data.elements).length;
                     // console.log('New benches: ' + size);
+                    $('.toggle-new-benches .is-loading').remove();
                     $('.toggle-new-benches').append(' (' + size + ')');
                     benchmap.osmJson = data.elements;
                     makeMarkers('new');
@@ -473,8 +475,8 @@
                 // oldoverpassQuery = encodeURIComponent('node' + '[amenity=bench]' + oldbbString + ';out body;'),
                 // oldoverpassURL = '//overpass-api.de/api/interpreter?data=[out:json];' + oldoverpassQuery;
                 oldoverpassURL = 'data/vancouver-benches-2019-02-25.json';
-                console.log(oldbbString);
-                console.log(oldoverpassURL);
+                // console.log(oldbbString);
+                // console.log(oldoverpassURL);
 
             $.ajax({
                 url: oldoverpassURL,
@@ -488,6 +490,7 @@
 
                     var size = Object.keys(data.elements).length;
                     // console.log('Old benches: ' + size);
+                    $('.toggle-old-benches .is-loading').remove();
                     $('.toggle-old-benches').append(' (' + size + ')');
 
                     benchmap.osmJson = data.elements;
@@ -530,8 +533,8 @@
 
             var overlayLayer = {
                 // '<span><svg class="icon temaki temaki-bench "><use xlink:href="#temaki-bench"></use></svg>All Benches</span>': benchmap.markerClusterGroupAll,
-                '<span class="toggle-old-benches" title="Benches added before February 24, 2019"><svg class="icon temaki temaki-bench "><use xlink:href="#temaki-bench"></use></svg>Old</span>': benchmap.markerClusterGroupOld,
-                '<span class="toggle-new-benches" title="Benches added after February 24, 2019"><svg class="icon temaki temaki-bench "><use xlink:href="#temaki-bench"></use></svg>New</span>': benchmap.markerClusterGroupNew
+                '<span class="toggle-old-benches" title="Benches added before February 24, 2019"><svg class="icon temaki temaki-bench "><use xlink:href="#temaki-bench"></use></svg>Old <span class="is-loading"></span></span>': benchmap.markerClusterGroupOld,
+                '<span class="toggle-new-benches" title="Benches added after February 24, 2019"><svg class="icon temaki temaki-bench "><use xlink:href="#temaki-bench"></use></svg>New <span class="is-loading"></span></span>': benchmap.markerClusterGroupNew
                 // "<img src='assets/img/flickr-marker.png' width='17' height='17'>&nbsp;Flickr photos": flickr
             };
 
@@ -553,9 +556,11 @@
             //     'Statistics'
             // ).addTo(map);
 
+
+
             L.easyButton('fa-compass',
                 function () {
-                    map.locate({setView: true});
+                    goToVancouver(true);
                 },
                 'Zoom to your current location'
             ).addTo(map);
@@ -578,10 +583,10 @@
 
         };
 
-        var attr_osm = '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+        var attr_osm = '&copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors';
         var attr_mapbox =
-            'Map style &copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a>; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors; Satellite and aerial imagery &copy; <a href="https://bing.com/maps">Microsoft Bing Maps</a> and MapPoint Web Service';
-        var attr_nests = 'bench locations via <a href="http://www.overpass-api.de/">Overpass API</a>';
+            'Map style &copy; <a href="https://www.mapbox.com/about/maps/" target="_blank">Mapbox</a>; Map data &copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors; Satellite and aerial imagery &copy; <a href="https://bing.com/maps" target="_blank">Microsoft Bing Maps</a> and MapPoint Web Service';
+        var attr_nests = 'bench locations via <a href="http://www.overpass-api.de/" target="_blank">Overpass API</a>';
         var attr_dev = '';//'web map created by <a href="http://www.openstreetmap.org/user/HasT">HasT</a>';
 
 
@@ -657,7 +662,6 @@
 
         var you_are_here;
         var marker_found = false;
-
         function getLocation() {
           benchmap.map.locate({
               setView: true,
@@ -668,6 +672,7 @@
               if (marker_found == true) {
                 you_are_here.setLatLng(e.latlng).update();
                 console.log("updating 'you are here' position.");
+                // goToVancouver();
               }
               else {
                 console.log("adding marker for 'you are here'.");
@@ -675,8 +680,56 @@
                 you_are_here = new L.marker(e.latlng);
                 you_are_here.bindPopup("You are here.");
                 you_are_here.addTo(benchmap.map);
+                goToVancouver(true);
               }
             });
+        }
+
+        function checkIfInsideBBox(latitude, longitude, bbox) {
+            //var lower_mainland_bbox = '(49.102195944878375,-123.41457366943361,49.42437391023319,-122.74990081787111)';
+            // 49.26012332278465, -123.10528278350831
+
+            var bbox_array = bbox.replace('(','').replace(')','').split(",");
+            console.log(bbox_array);
+
+            if (latitude > bbox_array[0] && latitude < bbox_array[2]) {
+                // console.log("latitude is correct")
+
+                if (longitude > bbox_array[1] && longitude < bbox_array[3]) {
+                    console.log("latitude is inside the bbox");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        var outside_lower_mainland = false;
+        function goToVancouver(zoom_or_not) {
+            var mapCenter = benchmap.map.getBounds().getCenter();
+            // console.log("current mapCenter location:" + mapCenter.lat + ', ' + mapCenter.lng);
+            var in_lower_mainland = checkIfInsideBBox(mapCenter.lat, mapCenter.lng, lower_mainland_bbox);
+
+            if (in_lower_mainland) {
+                if (zoom_or_not) {
+                    benchmap.map.locate({setView: true});
+                }
+                console.log("your current location is within the lower mainland.");
+            }
+            else {
+                console.log("current map location is not in the lower mainland.");
+                // if we're not in the lower mainland, go to vancouver.
+                if (outside_lower_mainland == false) {
+                    if (confirm("Benchmapper 1.0 only maps benches near Vancouver, Canada. Go there now?")) {
+                      // txt = "You pressed OK!";
+                      benchmap.map.setView([49.2636, -123.0822], 12);
+                    } else {
+                      // txt = "You pressed Cancel!";
+                      // benchmap.map.locate({setView: true, maxZoom: 12});
+                      outside_lower_mainland = true;
+                    }
+                }
+            }
         }
 
         /**
