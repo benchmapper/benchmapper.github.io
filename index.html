@@ -441,12 +441,13 @@
             getOldBenches();
         };
 
-        var lower_mainland_bbox = '(49.102195944878375,-123.41457366943361,49.42437391023319,-122.74990081787111)';
+        var lower_mainland_bbox = '(49.102195944878375,-123.41457366943361,49.42437391023319,-122.74990081787111)'; // We can use this on the Overpass turbo query builder site.
 
         function getNewBenches() {
 
             var bbString = lower_mainland_bbox,//formatBBox(),
-                dateQuery = '(newer:"2019-02-24T07:00:00Z")',
+                // dateQuery = '(newer:"2019-02-24T07:00:00Z")',
+                dateQuery = '(newer:"2020-03-05T07:00:00Z")',
                 overpassQuery = encodeURIComponent("node" + '[amenity=bench]' + dateQuery + bbString + ";out body;"),
                 overpassURL = "//overpass-api.de/api/interpreter?data=[out:json];" + overpassQuery;
 
@@ -475,6 +476,7 @@
                 // oldoverpassQuery = encodeURIComponent('node' + '[amenity=bench]' + oldbbString + ';out body;'),
                 // oldoverpassURL = '//overpass-api.de/api/interpreter?data=[out:json];' + oldoverpassQuery;
                 oldoverpassURL = 'data/vancouver-benches-2019-02-25.json';
+                oldoverpassURL = 'data/vancouver-benches-between-2019-12-01-to-2020-03-05.json'
                 // console.log(oldbbString);
                 // console.log(oldoverpassURL);
 
